@@ -1,0 +1,15 @@
+[package]
+name = "bobbit"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+irc = {version = "0.15.0"}
+chrono = {version = "*"}
+futures = {version = "*"}
+tokio = {version = "*", features = ["full"]}
+regex = "1"
+rand = "0.8.5"

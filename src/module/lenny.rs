@@ -3,14 +3,13 @@ use irc::proto::{Message, Command::*};
 use regex::Regex;
 use rand::prelude::Rng;
 
-const LENNYS:[&'static str;12] = ["( ͡° ͜ʖ ͡°)","( ͠° ͟ʖ ͡°)","ᕦ( ͡° ͜ʖ ͡°)ᕤ","( ͡° ͜ʖ ͡°)","( ͡~ ͜ʖ ͡°)","( ͡o ͜ʖ ͡o)","͡° ͜ʖ ͡ -","( ͡͡ ° ͜ ʖ ͡ °)","( ͡ ͡° ͡°  ʖ ͡° ͡°)","(ง ͠° ͟ل͜ ͡°)ง","( ͡° ͜ʖ ͡ °)","( ͡°╭͜ʖ╮͡° )"];
-const PATTERN: &'static str = "^![Ll]enny\\s*(?P<text>.*)$";
-const USAGE: &'static str = "Usage: ![Ll]enny
+const LENNYS:[&str;12] = ["( ͡° ͜ʖ ͡°)","( ͠° ͟ʖ ͡°)","ᕦ( ͡° ͜ʖ ͡°)ᕤ","( ͡° ͜ʖ ͡°)","( ͡~ ͜ʖ ͡°)","( ͡o ͜ʖ ͡o)","͡° ͜ʖ ͡ -","( ͡͡ ° ͜ ʖ ͡ °)","( ͡ ͡° ͡°  ʖ ͡° ͡°)","(ง ͠° ͟ل͜ ͡°)ง","( ͡° ͜ʖ ͡ °)","( ͡°╭͜ʖ╮͡° )"];
+const PATTERN: &str = "^![Ll]enny\\s*(?P<text>.*)$";
+const USAGE: &str = "Usage: ![Ll]enny
 Displays a Lenny face ( ͡° ͜ʖ ͡°)";
 
 pub struct Lenny {}
-
-
+#[allow(unused_variables)]
 impl super::Module for Lenny {
     fn mod_message(message: &Message, message_buf: &VecDeque<Message>) -> Option<(String,String)> {
         let regex: Regex = Regex::new(PATTERN).expect("Error creating regex");

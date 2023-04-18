@@ -10,8 +10,8 @@ Displays a Lenny face ( ͡° ͜ʖ ͡°)";
 
 pub struct Lenny {}
 #[allow(unused_variables)]
-impl super::Module for Lenny {
-    fn mod_message(message: &Message, message_buf: &VecDeque<Message>) -> Option<(String,String)> {
+impl Lenny {
+    pub fn mod_message(message: &Message, message_buf: &VecDeque<Message>) -> Option<(String,String)> {
         let regex: Regex = Regex::new(PATTERN).expect("Error creating regex");
         
         //checks if it was a PRIVMSG
@@ -29,7 +29,7 @@ impl super::Module for Lenny {
         None
     }
 
-    fn usage(message: &Message) -> (String,String) {
+    pub fn usage(message: &Message) -> (String,String) {
         //prints a usage, not sure when I'm gonna use this but let's see
         (message.response_target().unwrap_or("#lug").to_string(),USAGE.to_string())
     }

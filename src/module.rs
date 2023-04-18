@@ -2,6 +2,7 @@ use std::collections::VecDeque;
 use irc::proto::{Message, Command::*};
 
 //list of available modules, add mod [MODULE_NAME]; when you complete a new module 
+//is this the best way to do this? probably not
 mod lenny;
 mod bully;
 mod join_rude;
@@ -26,9 +27,4 @@ pub fn handle(message: &Message, message_buf: &VecDeque<Message>) -> Option<(Str
     
 
     None
-}
-
-pub trait Module {
-    fn usage(message: &Message) -> (String,String);
-    fn mod_message(message: &Message, message_buf: &VecDeque<Message>) -> Option<(String,String)>;
 }

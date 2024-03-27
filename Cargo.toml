@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 
 irc = {version = "1.0.0", default-features = false, features = ["tls-rust", "ctcp", "channel-lists","toml_config"]}
-chrono = {version = "*"}
+chrono = "*"
 futures = {version = "*"}
 tokio = {version = "*", features = ["full"]}
 regex = "1"

@@ -23,22 +23,17 @@ const BULLY_PHRASES:[&str;12] = [
     " thinks you were probably the pilot of Ever Given when it clogged the Suez Canal, "
 ];
 
-const PATTERN: &str = "^\\$bully (?P<nick>[^\\s]+)";
+pub const PATTERN: &str = "^\\$bully (?P<nick>[^\\s]+)";
 
-pub fn mod_message(message: &Message, message_buf: &VecDeque<Message>) -> Option<(String,String)> {
-    let regex: Regex = Regex::new(PATTERN).expect("Error creating regex");
+pub fn mod_message(captures: regex::Captures, message: &Message, _message_buf: &VecDeque<Message>) -> Option<(String,String)> {
 
-    if let PRIVMSG(_,msg) = message.command.clone() {
-        if let Some(capture) = regex.captures(msg.as_str()) {
-            let bully_message: String = BULLY_PHRASES[rand::thread_rng().gen_range(0..BULLY_PHRASES.len())].to_string();
-            let to_be_bullied = capture.get(1).unwrap().as_str();
+    let bully_message: String = BULLY_PHRASES[rand::thread_rng().gen_range(0..BULLY_PHRASES.len())].to_string();
+    let to_be_bullied = captures.get(1).unwrap().as_str();
 
-            let complete_message = message.source_nickname().unwrap_or("unknown_nick").to_string() + bully_message.as_str() + to_be_bullied;
+    let complete_message = message.source_nickname().unwrap_or("unknown_nick").to_string() + bully_message.as_str() + to_be_bullied;
 
-            return Some((message.response_target().unwrap_or("#lug").to_string(), complete_message));
-        }
-    }
-    None
+    Some((message.response_target().unwrap_or("#lug").to_string(), complete_message))
+
 }
 
 pub fn usage(message: &Message) -> (String, String) {

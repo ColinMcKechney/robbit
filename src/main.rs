@@ -2,7 +2,7 @@ use std::collections::VecDeque;
 
 use irc::{client::prelude::*, error::Error};
 use futures::prelude::*;
-use robbit::handle;
+use robbit::{build_modules, handle};
 
 #[tokio::main]
 async fn main() -> Result<(), Error>{
@@ -17,9 +17,10 @@ async fn main() -> Result<(), Error>{
 
 
     let mut message_buf: VecDeque<Message> = VecDeque::with_capacity(max_len);
+    let module_pair = build_modules().expect("Error building modules");
     while let Some(message) = stream.next().await.transpose()? {
         print!("{}",message);
-        let response = handle(&message, &message_buf);
+        let response = handle(&module_pair, &message, &message_buf);
 
         if let Some((target,msg))= response {
             print!("{}",message);

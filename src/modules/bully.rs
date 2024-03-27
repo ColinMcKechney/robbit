@@ -1,6 +1,5 @@
 use std::collections::VecDeque;
-use irc::proto::{Message, Command::PRIVMSG};
-use regex::Regex;
+use irc::proto::Message,
 use rand::prelude::Rng;
 
 
@@ -17,7 +16,7 @@ const BULLY_PHRASES:[&str;12] = [
     " doesn't care about your race, sex, or age... or anything about you really, ",
     " has more maidens than you, ",
     "'s faith in society has plummeted since meeting you, ",
-    " think you're about as good as the dining hall food, ",
+    " thinks you're about as good as the dining hall food, ",
     " gives eMoTiOnAL dAmAgE to ",
     " has a confession to make. You're ugly, ",
     " thinks you were probably the pilot of Ever Given when it clogged the Suez Canal, "

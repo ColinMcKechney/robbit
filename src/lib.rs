@@ -6,13 +6,13 @@ use regex::Regex;
 //is this the best way to do this? probably not
 mod modules;
 
-use modules::{bully, lenny, join_rude};
+use modules::{bully, lenny, join_rude, grass, noemo, ttb};
 
 type ModuleFunc = fn(regex::Captures, &Message, &VecDeque<Message>)->Option<(String, String)>;
-const NUM_MODS:usize = 2;
+const NUM_MODS:usize = 5;
 
 
-const MODULES: [(&str, ModuleFunc);NUM_MODS] = [(lenny::PATTERN, lenny::mod_message), (bully::PATTERN, bully::mod_message)];
+const MODULES: [(&str, ModuleFunc);NUM_MODS] = [(lenny::PATTERN, lenny::mod_message), (bully::PATTERN, bully::mod_message), (grass::PATTERN, grass::touch_grass), (noemo::PATTERN, noemo::no_emo), (ttb::PATTERN, ttb::time_to_baby)];
 
 pub fn build_modules() -> Result<Vec<(Regex, ModuleFunc)>, regex::Error> {
     let mut regex_array: Vec<(Regex, ModuleFunc)> = Vec::with_capacity(NUM_MODS);

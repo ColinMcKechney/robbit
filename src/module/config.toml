@@ -1,6 +1,0 @@
-nickname    = "robbit"
-username    = "robbit"
-realname    = "robbit"
-server      = "chat.ndlug.org"
-port        = 6697
-channels    = ["#bots"]

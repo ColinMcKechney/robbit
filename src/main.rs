@@ -2,8 +2,7 @@ use std::collections::VecDeque;
 
 use irc::{client::prelude::*, error::Error};
 use futures::prelude::*;
-mod module;
-
+use robbit::handle;
 
 #[tokio::main]
 async fn main() -> Result<(), Error>{
@@ -16,16 +15,16 @@ async fn main() -> Result<(), Error>{
     let mut stream = client.stream()?;
     let sender = client.sender();
 
-    
+
     let mut message_buf: VecDeque<Message> = VecDeque::with_capacity(max_len);
     while let Some(message) = stream.next().await.transpose()? {
         print!("{}",message);
-        let response = module::handle(&message, &message_buf);
+        let response = handle(&message, &message_buf);
 
         if let Some((target,msg))= response {
             print!("{}",message);
             sender.send_privmsg(target,msg)?;
-        } 
+        }
 
         if message_buf.len() < max_len {
             message_buf.push_front(message);

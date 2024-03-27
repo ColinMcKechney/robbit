@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 
 pub const PATTERN: &str = "\\$grass (?P<nick>[^\\s]+)";
 
-pub fn touch_grass(captures: regex::Captures, message: &Message, _: &VecDeque<Message>) -> Option<(String, String)> {
+pub fn touch_grass(captures: regex::Captures, message: &Message, _: &VecDeque<Message>) -> String {
 
     let grass_toucher = captures.get(1).unwrap().as_str();
 
@@ -11,5 +11,5 @@ pub fn touch_grass(captures: regex::Captures, message: &Message, _: &VecDeque<Me
                                    message.source_nickname().unwrap_or("unknown_nick").to_string(),
                                    grass_toucher);
 
-    Some((message.response_target().unwrap_or("#lug").to_string(), complete_message.to_string()))
+   complete_message
 }

@@ -5,7 +5,7 @@ use chrono::{prelude::*, TimeDelta};
 pub const PATTERN: &str = "^\\$ttb\\s*$";
 
 
-pub fn time_to_baby(_: regex::Captures, message: &Message, _: &VecDeque<Message>) -> Option<(String, String)> {
+pub fn time_to_baby(_: regex::Captures, message: &Message, _: &VecDeque<Message>) -> String {
     let local_time: DateTime<Local> = Local::now();
 
     let birth_time: DateTime<Local> = Local.with_ymd_and_hms(2024, 10, 17, 00, 00, 00).unwrap();
@@ -21,5 +21,5 @@ pub fn time_to_baby(_: regex::Captures, message: &Message, _: &VecDeque<Message>
     }
 
 
-    Some((message.response_target().unwrap_or("#lug").to_string(), completed_message))
+    completed_message
 }

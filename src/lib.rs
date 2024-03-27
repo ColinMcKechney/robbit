@@ -8,7 +8,7 @@ mod modules;
 
 use modules::{bully, lenny, join_rude, grass, noemo, ttb};
 
-type ModuleFunc = fn(regex::Captures, &Message, &VecDeque<Message>)->Option<(String, String)>;
+type ModuleFunc = fn(regex::Captures, &Message, &VecDeque<Message>)->String;
 const NUM_MODS:usize = 5;
 
 
@@ -28,7 +28,7 @@ pub fn handle(modules: &Vec<(Regex, ModuleFunc)>, message: &Message, message_buf
     match &message.command {
         PRIVMSG(_,msg) => for (regex, function) in modules{
                             if let Some(captures) = regex.captures(msg.as_str()) {
-                                return function(captures, message, message_buf);
+                                return Some((message.response_target().unwrap_or("#lug").to_string(), function(captures, message, message_buf)));
                             }
                         },
         JOIN(ref channel,_,_) => return join_rude::join_rude(message.source_nickname().unwrap_or("unknown user"), channel.as_str()),

@@ -7,11 +7,11 @@ pub const PATTERN: &str = "^\\$[Ll]enny\\s*(?P<text>.*)$";
 const USAGE: &str = "Usage: ![Ll]enny
 Displays a Lenny face ( ͡° ͜ʖ ͡°)";
 
-pub fn mod_message(captures: regex::Captures, message: &Message, _message_buf: &VecDeque<Message>) -> Option<(String,String)> {
+pub fn mod_message(captures: regex::Captures, message: &Message, _message_buf: &VecDeque<Message>) -> String {
     let lenny = LENNYS[rand::thread_rng().gen_range(0..LENNYS.len())].to_string();
     let text = captures.get(1).unwrap().as_str();
 
-    Some((message.response_target().unwrap_or("#lug").to_string(),format!("{} {}", lenny, text)))
+    format!("{} {}", lenny, text)
 }
 
 pub fn usage(message: &Message) -> (String,String) {

@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 
-irc = {version = "0.15.0"}
+irc = {version = "1.0.0", default-features = false, features = ["tls-rust", "ctcp", "channel-lists","toml_config"]}
 chrono = {version = "*"}
 futures = {version = "*"}
 tokio = {version = "*", features = ["full"]}

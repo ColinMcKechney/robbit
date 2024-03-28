@@ -1,7 +1,9 @@
 use irc::proto::Message;
 use std::collections::VecDeque;
 
-pub const PATTERN: &str = "\\$noemo (?P<nick>[^\\s]+)";
+pub const PATTERN: &str = "^\\$noemo (?P<nick>[^\\s]+)";
+pub const NAME: &str = "noemo";
+pub const USAGE: &str = "Usage: $noemo <nick>\r\nThis tells the user identified by nick to not be emo";
 
 pub fn no_emo(captures: regex::Captures, message: &Message, _: &VecDeque<Message>) -> String {
     let emo_person = captures.get(1).unwrap().as_str();

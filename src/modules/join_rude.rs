@@ -1,6 +1,6 @@
 use rand::prelude::Rng;
 
-const PHRASES:[&str;25] = [
+const PHRASES:[&str;24] = [
     "Go back to your cronjobs",
     "Don't you have a student machine to fork bomb?",
     "If your poor excuse for a bot is GPT4 then I'm Alan Turing",
@@ -16,7 +16,6 @@ const PHRASES:[&str;25] = [
     "You definitely leave zombie processes when you exit VSCode",
     "It's the honor code not the honor suggestion",
     "Wow another bot that responds when you say hello, how unique",
-    "The extra curly bracket is over by the fucks I have to give, go find it",
     "Zahm may be closed, but you still give off Zahm vibes",
     "They really let anyone in here huh?",
     "You're the tech bro who doesn't actually know how to code",
@@ -29,7 +28,7 @@ const PHRASES:[&str;25] = [
 ];
 
 pub fn join_rude(nick: &str, channel: &str) -> Option<(String,String)> {
-    
+
     let rude_message: &str = PHRASES[rand::thread_rng().gen_range(0..PHRASES.len())];
     let complete_message: String = nick.to_string() + ": " + rude_message;
 

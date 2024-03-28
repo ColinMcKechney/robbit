@@ -6,13 +6,14 @@ use regex::Regex;
 //is this the best way to do this? probably not
 mod modules;
 
-use modules::{bully, lenny, join_rude, grass, noemo, ttb};
+use modules::{bully, lenny, join_rude, grass, noemo, ttb, help};
 
 type ModuleFunc = fn(regex::Captures, &Message, &VecDeque<Message>)->String;
-const NUM_MODS:usize = 5;
+const NUM_MODS:usize = 6;
 
 
-const MODULES: [(&str, ModuleFunc);NUM_MODS] = [(lenny::PATTERN, lenny::mod_message), (bully::PATTERN, bully::mod_message), (grass::PATTERN, grass::touch_grass), (noemo::PATTERN, noemo::no_emo), (ttb::PATTERN, ttb::time_to_baby)];
+const MODULES: [(&str, ModuleFunc);NUM_MODS] = [(lenny::PATTERN, lenny::mod_message), (bully::PATTERN, bully::mod_message), (grass::PATTERN, grass::touch_grass), (noemo::PATTERN, noemo::no_emo), (ttb::PATTERN, ttb::time_to_baby), (help::PATTERN, help::help)];
+const MODULE_USAGE: [(&str, &str); NUM_MODS] = [(lenny::NAME, lenny::USAGE), (bully::NAME, bully::USAGE), (grass::NAME, grass::USAGE), (noemo::NAME, noemo::USAGE), (ttb::NAME, ttb::USAGE), (help::NAME, help::USAGE)];
 
 pub fn build_modules() -> Result<Vec<(Regex, ModuleFunc)>, regex::Error> {
     let mut regex_array: Vec<(Regex, ModuleFunc)> = Vec::with_capacity(NUM_MODS);

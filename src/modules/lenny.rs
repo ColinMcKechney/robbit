@@ -4,8 +4,8 @@ use rand::prelude::Rng;
 
 const LENNYS:[&str;12] = ["( ͡° ͜ʖ ͡°)","( ͠° ͟ʖ ͡°)","ᕦ( ͡° ͜ʖ ͡°)ᕤ","( ͡° ͜ʖ ͡°)","( ͡~ ͜ʖ ͡°)","( ͡o ͜ʖ ͡o)","͡° ͜ʖ ͡ -","( ͡͡ ° ͜ ʖ ͡ °)","( ͡ ͡° ͡°  ʖ ͡° ͡°)","(ง ͠° ͟ل͜ ͡°)ง","( ͡° ͜ʖ ͡ °)","( ͡°╭͜ʖ╮͡° )"];
 pub const PATTERN: &str = "^\\$[Ll]enny\\s*(?P<text>.*)$";
-const USAGE: &str = "Usage: ![Ll]enny
-Displays a Lenny face ( ͡° ͜ʖ ͡°)";
+pub const USAGE: &str = "Usage: $[Ll]enny\r\nDisplays a Lenny face ( ͡° ͜ʖ ͡°)";
+pub const NAME: &str = "lenny";
 
 pub fn mod_message(captures: regex::Captures, message: &Message, _message_buf: &VecDeque<Message>) -> String {
     let lenny = LENNYS[rand::thread_rng().gen_range(0..LENNYS.len())].to_string();

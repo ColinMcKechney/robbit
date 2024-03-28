@@ -1,0 +1,6 @@
+services:
+  robbit:
+    image: personal_projects:robbit
+    command: -c "./target/release/robbit"
+    entrypoint: /bin/sh
+

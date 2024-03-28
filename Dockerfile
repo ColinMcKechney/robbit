@@ -6,6 +6,7 @@ RUN apk add --no-cache musl-dev
 WORKDIR /home/robbit/
 COPY ./ ./
 RUN chown robbit ./*
+RUN cp ./configs/config.toml ./config.toml
 
 USER robbit
 

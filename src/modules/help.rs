@@ -1,7 +1,7 @@
 use irc::proto::Message;
 use std::collections::VecDeque;
 
-pub const PATTERN: &str = "\\$help(?: (.*))?";
+pub const PATTERN: &str = "^\\$help(?: (.*))?";
 pub const NAME: &str = "help";
 pub const USAGE: &str = "You just used it";
 

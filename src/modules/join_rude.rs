@@ -31,7 +31,7 @@ const PHRASES:[&str;26] = [
 ];
 
 pub fn join_rude(nick: &str, channel: &str) -> Option<(String,String)> {
-    if nick == "robbit" {
+    if nick == "robbit" || (channel == "#lug" && nick.contains("turtle")) || nick == "robbit_test" {
         None
     }
     else {

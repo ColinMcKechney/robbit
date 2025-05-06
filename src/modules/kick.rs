@@ -19,7 +19,7 @@ pub fn usage(message: &Message) -> (String, String) {
 }
 
 pub fn bad_user(user: &str, channel: &str) -> Option<(String, String)> {
-    let regex = match Regex::new(".*[dD]ick[rR]ider.*") {
+    let regex = match Regex::new(".*[dD]ick[rR]id(er|ing).*") {
         Ok(r) => r,
         Err(_) => {
             return None;

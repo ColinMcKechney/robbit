@@ -27,13 +27,13 @@ async fn main() -> Result<(), Error>{
             sender.send_privmsg(target,msg)?;
         }
 
-        if message_buf.len() < max_len {
+        /*if message_buf.len() < max_len {
             message_buf.push_front(message);
         }
         else {
             let _ = message_buf.pop_back();
             message_buf.push_front(message);
-        }
+        }*/
     }
 
     Ok(())

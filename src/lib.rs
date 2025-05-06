@@ -32,7 +32,7 @@ pub fn handle(modules: &Vec<(Regex, ModuleFunc)>, message: &Message, message_buf
                                 return Some((message.response_target().unwrap_or("#lug").to_string(), function(captures, message, message_buf)));
                             }
                         },
-        JOIN(ref channel,_,_) => return join_rude::join_rude(message.source_nickname().unwrap_or("unknown user"), channel.as_str()),
+        //JOIN(ref channel,_,_) => return join_rude::join_rude(message.source_nickname().unwrap_or("unknown user"), channel.as_str()),
         _ => ()
     }
 

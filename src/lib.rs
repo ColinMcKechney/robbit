@@ -29,10 +29,17 @@ pub fn handle(modules: &Vec<(Regex, ModuleFunc)>, message: &Message, message_buf
     match &message.command {
         PRIVMSG(_,msg) => for (regex, function) in modules{
                             if let Some(captures) = regex.captures(msg.as_str()) {
-                                return Some((message.response_target().unwrap_or("#lug").to_string(), function(captures, message, message_buf)));
+                                if msg.contains("$kick")  {
+                                    if message.source_nickname().unwrap_or_default() == "L3gion" {
+                                        return Some((message.response_target().unwrap_or("#lug").to_string(), function(captures, message, message_buf)));
+                                    }
+                                }
+                                else {
+                                    return Some((message.response_target().unwrap_or("#lug").to_string(), function(captures, message, message_buf)));
+                                }
                             }
                         },
-        //JOIN(ref channel,_,_) => return join_rude::join_rude(message.source_nickname().unwrap_or("unknown user"), channel.as_str()),
+        JOIN(ref channel,_,_) => return kick::bad_user(message.source_nickname().unwrap_or("unknown user"), channel.as_str()),
         _ => ()
     }
 

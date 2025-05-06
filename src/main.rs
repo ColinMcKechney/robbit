@@ -23,8 +23,14 @@ async fn main() -> Result<(), Error>{
         let response = handle(&module_pair, &message, &message_buf);
 
         if let Some((target,msg))= response {
-            print!("{}",message);
-            sender.send_privmsg(target,msg)?;
+            if msg.contains("/kick") {
+                let message: Vec<&str> = msg.split(" ").collect();
+                sender.send_kick(target, message[1], "")?;
+            }
+            else {
+                print!("{}",message);
+                sender.send_privmsg(target,msg)?;
+            }
         }
 
         /*if message_buf.len() < max_len {

@@ -13,3 +13,4 @@ futures = {version = "*"}
 tokio = {version = "*", features = ["full"]}
 regex = "1"
 rand = "0.8.5"
+humantime = "2.3.0"

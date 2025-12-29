@@ -1,6 +1,8 @@
 use irc::proto::Message;
 use std::collections::VecDeque;
-use chrono::{prelude::*, TimeDelta};
+use std::time::Duration;
+use chrono::prelude::*;
+use humantime;
 
 pub const PATTERN: &str = "^\\$ttb\\s*$";
 pub const NAME: &str = "ttb";
@@ -15,13 +17,9 @@ pub fn time_to_baby(_: regex::Captures, _: &Message, _: &VecDeque<Message>) -> S
     let difference = local_time - birth_time;
 
     let completed_message;
-    /*if difference > TimeDelta::zero() {
-        completed_message = format!("{} {} until pnutz's baby is due!", difference.num_days(), if difference.num_days() > 1 { "days"} else {"day"} );
-    }
-    else {
-        completed_message = "They're past due!".to_string();
-    }*/
-    completed_message = format!("He's {} days old!", difference.num_days());
+    
+    let human_difference = humantime::format_duration(Duration::from_secs(difference.num_seconds() as u64));
+    completed_message = format!("He's {} old!", human_difference.to_string());
 
 
     completed_message

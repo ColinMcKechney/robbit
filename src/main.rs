@@ -31,15 +31,15 @@ async fn main() -> Result<(), Error>{
                 print!("{}",message);
                 sender.send_privmsg(target,msg)?;
             }
+        } else {
+            if message_buf.len() < max_len {
+                message_buf.push_front(message);
+            }
+            else {
+                let _ = message_buf.pop_back();
+                message_buf.push_front(message);
+            }
         }
-
-        /*if message_buf.len() < max_len {
-            message_buf.push_front(message);
-        }
-        else {
-            let _ = message_buf.pop_back();
-            message_buf.push_front(message);
-        }*/
     }
 
     Ok(())

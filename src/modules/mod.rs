@@ -8,3 +8,4 @@ pub mod help;
 pub mod repo;
 pub mod rtfm;
 pub mod kick;
+pub mod history;

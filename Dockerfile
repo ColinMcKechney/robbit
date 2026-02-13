@@ -12,4 +12,4 @@ USER robbit
 
 RUN cargo build -r
 
-CMD ./target/release/robbit
+CMD ["./target/release/robbit"]

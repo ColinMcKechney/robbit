@@ -6,7 +6,7 @@ use robbit::{build_modules, handle};
 
 #[tokio::main]
 async fn main() -> Result<(), Error>{
-    let max_len = 100;
+    let max_len = 1000;
 
     let config = Config::load("config.toml")?;
     let mut client = Client::from_config(config).await?;

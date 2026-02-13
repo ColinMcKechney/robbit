@@ -10,3 +10,4 @@ pub mod rtfm;
 pub mod kick;
 pub mod history;
 pub mod time_to_date;
+pub mod bonk;
